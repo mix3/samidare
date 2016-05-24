@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package samidare;
+
+service Samidare {
+	rpc Watch (stream WatchRequest) returns (stream WatchResponse) {}
+}
+
+message WatchRequest  {
+	enum Type {
+		INCREMENT = 0;
+		DECREMENT = 1;
+	}
+	Type type = 1;
+}
+message WatchResponse {
+	enum Type {
+		DESIRED = 0;
+		CURRENT = 1;
+	}
+	Type  type = 1;
+	int64 num  = 2;
+}
